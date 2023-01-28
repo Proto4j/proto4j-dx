@@ -52,5 +52,5 @@ public interface DxVersion {
     /**
      * Specifies the version of the Android-dx tool. (1.16)
      */
-    int DX16 = 29476530;
+    int DX16 = "1.16".hashCode();
 }
