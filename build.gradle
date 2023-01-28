@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group 'org.proto4j'
+version '1.16'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(include: '*.jar', dir: 'lib')
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+
+    manifest.attributes.put('Dx-Version',  project.version)
+
+
+    exclude('META-INF/*.SF')
+    exclude('META-INF/*.DSA')
+    exclude('META-INF/*.RSA')
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
