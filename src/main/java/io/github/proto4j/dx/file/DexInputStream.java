@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package org.proto4j.dx.file; //@date 28.01.2023
+package io.github.proto4j.dx.file; //@date 28.01.2023
 
 import com.android.dex.Dex;
 

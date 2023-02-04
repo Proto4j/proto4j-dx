@@ -22,14 +22,14 @@
  * SOFTWARE.
  */
 
-package org.proto4j.dx; //@date 28.01.2023
+package io.github.proto4j.dx; //@date 28.01.2023
 
 import com.android.dx.cf.direct.DirectClassFile;
 import com.android.dx.cf.iface.ParseException;
 import com.android.dx.dex.DexOptions;
 import com.android.dx.dex.file.DexFile;
-import org.proto4j.dx.file.DexInputStream;
-import org.proto4j.dx.file.DexOutputStream;
+import io.github.proto4j.dx.file.DexInputStream;
+import io.github.proto4j.dx.file.DexOutputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -88,7 +88,7 @@ final class DefaultDexFactory extends DexFactory {
 
     private static class DefaultClassParser extends ClassParser {
 
-        private DefaultClassParser() {super(DxVersion.DX16);}
+        private DefaultClassParser() {super(DX16);}
 
         @Override
         public DirectClassFile read(String filename, InputStream inputStream) throws IOException, ParseException {

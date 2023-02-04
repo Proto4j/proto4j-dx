@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package org.proto4j.dx.file;//@date 28.01.2023
+package io.github.proto4j.dx.file;//@date 28.01.2023
 
 import com.android.dx.cf.direct.DirectClassFile;
 import com.android.dx.cf.iface.ParseException;
@@ -32,7 +32,7 @@ import com.android.dx.dex.cf.CfOptions;
 import com.android.dx.dex.cf.CfTranslator;
 import com.android.dx.dex.file.ClassDefItem;
 import com.android.dx.dex.file.DexFile;
-import org.proto4j.dx.ClassParser;
+import io.github.proto4j.dx.ClassParser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

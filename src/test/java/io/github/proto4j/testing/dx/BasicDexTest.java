@@ -22,35 +22,28 @@
  * SOFTWARE.
  */
 
-package org.proto4j.dx;//@date 28.01.2023
+package io.github.proto4j.testing.dx; //@date 28.01.2023
 
-/**
- * Public version definitions of this library.
- */
-public interface DxVersion {
+import com.android.dex.Dex;
+import io.github.proto4j.dx.DexFactory;
+import io.github.proto4j.dx.file.DexInputStream;
+import org.junit.jupiter.api.Test;
 
-    /**
-     * Specifies the minimum required Android SDK version when creating the
-     * dex-files. This version is set by default on any <code>ClassParser</code>
-     * created by the default <code>DexFactory</code>.
-     *
-     * @see DexFactory
-     */
-    int SDK13 = 13;
+import java.io.FileInputStream;
+import java.io.IOException;
 
-    /**
-     * Specifies the preferred Android SDK API level.
-     * <p>
-     * A <code>ClassParser</code> with the preferred version number can be
-     * retrieved by creating the preferred <code>DexOptions</code> with
-     * {@link DexFactory#createPreferredDexOptions()}.
-     *
-     * @see DexFactory
-     */
-    int SDK26 = 26;
+public class BasicDexTest {
 
-    /**
-     * Specifies the version of the Android-dx tool. (1.16)
-     */
-    int DX16 = "1.16".hashCode();
+    @Test
+    public void testFactory() throws IOException {
+        DexFactory factory = DexFactory.getDefault();
+
+        try (DexInputStream dis = factory.newInputStream()) {
+            dis.read(new FileInputStream("classes.dex"), true);
+
+            Dex dex = dis.toDex();
+        } catch (IOException e) {
+
+        }
+    }
 }

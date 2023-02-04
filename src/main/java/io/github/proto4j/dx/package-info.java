@@ -26,6 +26,7 @@
  * <b>proto4j-dx</b> <p>
  * A module for working with the Android-dx tool. All actions and classes
  * can be created by using an instance of the {@code DexFactory}.
+ * <ul>
  * <li>
  *     <code>DexOutputStream</code>: A class with <code>OutputStream</code>
  *     logic and the behaviour of a <code>ZipOutputStream</code>. An example
@@ -60,7 +61,8 @@
  *     order to add a returned <code>DirectClassFile</code> to an internal
  *     <code>DexFile</code>.
  * </li>
+ * </ul>
  *
- * @see org.proto4j.dx.DexFactory
+ * @see io.github.proto4j.dx.DexFactory
  **/
-package org.proto4j.dx;
+package io.github.proto4j.dx;

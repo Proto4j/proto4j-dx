@@ -22,13 +22,13 @@
  * SOFTWARE.
  */
 
-package org.proto4j.dx;//@date 28.01.2023
+package io.github.proto4j.dx;//@date 28.01.2023
 
 import com.android.dx.cf.direct.AttributeFactory;
 import com.android.dx.dex.DexOptions;
 import com.android.dx.dex.file.DexFile;
-import org.proto4j.dx.file.DexInputStream;
-import org.proto4j.dx.file.DexOutputStream;
+import io.github.proto4j.dx.file.DexInputStream;
+import io.github.proto4j.dx.file.DexOutputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
