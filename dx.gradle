@@ -1,0 +1,102 @@
+group = "io.github.proto4j"
+archivesBaseName = "proto4j-dx"
+version = "1.16"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(include: '*.jar', dir: 'lib')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+
+    manifest.attributes.put('Dx-Version',  project.version)
+
+
+    exclude('META-INF/*.SF')
+    exclude('META-INF/*.DSA')
+    exclude('META-INF/*.RSA')
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+publishing {
+    repositories {
+        maven {
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = ossrhUsername
+                password = ossrhPassword
+            }
+        }
+
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/proto4j/proto4j-dx")
+            credentials {
+                username = project.findProperty("p4j.user")
+                password = project.findProperty("p4j.dx.key")
+            }
+        }
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifactId = 'proto4j-dx'
+            groupId = 'io.github.proto4j'
+            version = project.version
+
+            pom {
+                name = 'Proto4j-Dx'
+                packaging = 'jar'
+                artifactId = 'proto4j-dx'
+                groupId = 'io.github.proto4j'
+                description = 'Module to interact with the Android-dx tool at Runtime.'
+                url = 'https://github.com/Proto4j/proto4j-dx'
+
+                scm {
+                    connection = 'scm:git:https://github.com/Proto4j/proto4j-dx'
+                    developerConnection = 'scm:git:https://github.com/Proto4j/proto4j-dx'
+                    url = 'https://github.com/Proto4j/proto4j-dx'
+                }
+
+                licenses {
+                    license {
+                        name = 'MIT'
+                        url = 'https://spdx.org/licenses/MIT.html'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'Proto4j-Group'
+                        name = 'Proto4j'
+                        email = 'not@supported.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
